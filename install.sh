@@ -105,22 +105,24 @@ ensure_path() {
             warn "Added ${INSTALL_DIR} to PATH in ${PROFILE}"
         fi
     fi
+
+    # Make it available in the current session immediately
+    export PATH="${INSTALL_DIR}:$PATH"
 }
 
 verify() {
-    if [ -x "${INSTALL_DIR}/${BINARY_NAME}" ]; then
-        INSTALLED_VERSION=$("${INSTALL_DIR}/${BINARY_NAME}" --version 2>&1 || true)
-        if [ -n "$INSTALLED_VERSION" ] && echo "$INSTALLED_VERSION" | grep -q "huntbot"; then
-            success "${INSTALLED_VERSION} installed successfully!"
-        else
-            success "Installed to ${INSTALL_DIR}/${BINARY_NAME}"
-            if [ -n "$INSTALLED_VERSION" ]; then
-                warn "Binary output: ${INSTALLED_VERSION}"
-            fi
-            warn "Run 'huntbot --version' to verify after restarting your shell"
-        fi
-    else
+    if [ ! -x "${INSTALL_DIR}/${BINARY_NAME}" ]; then
         error "Installation verification failed — binary not executable"
+    fi
+
+    INSTALLED_VERSION=$(huntbot --version 2>&1 || true)
+    if echo "$INSTALLED_VERSION" | grep -q "huntbot"; then
+        success "${INSTALLED_VERSION} installed successfully!"
+    else
+        success "Installed to ${INSTALL_DIR}/${BINARY_NAME}"
+        if [ -n "$INSTALLED_VERSION" ]; then
+            warn "Note: ${INSTALLED_VERSION}"
+        fi
     fi
 }
 
