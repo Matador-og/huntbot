@@ -24,13 +24,19 @@ huntbot setup
 
 The recommended way to use huntbot is through **Claude Code with the huntbot skill loaded**. This gives Claude full knowledge of every huntbot command, tool, and workflow.
 
-### 1. Load the skill
+### 1. Load the huntbot skill
 
 ```bash
-claude --skill https://raw.githubusercontent.com/Matador-og/huntbot/master/HUNTBOT.md
+# Add to your Claude Code skills (one time)
+mkdir -p ~/.claude/skills
+curl -fsSL https://raw.githubusercontent.com/Matador-og/huntbot/master/HUNTBOT.md -o ~/.claude/skills/huntbot.md
 ```
 
-### 2. Talk to Claude
+### 2. Open Claude Code and talk
+
+```bash
+claude
+```
 
 ```
 > Set up a new target for PayPal's bug bounty program and start hunting
@@ -41,7 +47,7 @@ claude --skill https://raw.githubusercontent.com/Matador-og/huntbot/master/HUNTB
 > Write up finding-001 for submission
 ```
 
-Claude handles everything — creates the workspace, writes the scope, runs the pipeline, interprets results, and helps you submit findings.
+Claude knows every huntbot command, tool, and workflow. It creates workspaces, writes scopes, runs pipelines, interprets results, and helps you submit findings.
 
 ### Direct CLI (advanced)
 
