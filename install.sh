@@ -109,10 +109,18 @@ ensure_path() {
 
 verify() {
     if [ -x "${INSTALL_DIR}/${BINARY_NAME}" ]; then
-        INSTALLED_VERSION=$("${INSTALL_DIR}/${BINARY_NAME}" --version 2>/dev/null || echo "unknown")
-        success "${INSTALLED_VERSION} installed successfully!"
+        INSTALLED_VERSION=$("${INSTALL_DIR}/${BINARY_NAME}" --version 2>&1 || true)
+        if [ -n "$INSTALLED_VERSION" ] && echo "$INSTALLED_VERSION" | grep -q "huntbot"; then
+            success "${INSTALLED_VERSION} installed successfully!"
+        else
+            success "Installed to ${INSTALL_DIR}/${BINARY_NAME}"
+            if [ -n "$INSTALLED_VERSION" ]; then
+                warn "Binary output: ${INSTALLED_VERSION}"
+            fi
+            warn "Run 'huntbot --version' to verify after restarting your shell"
+        fi
     else
-        error "Installation verification failed"
+        error "Installation verification failed — binary not executable"
     fi
 }
 
