@@ -140,6 +140,13 @@ main() {
     ensure_path
     verify
 
+    # Check if huntbot is on PATH right now
+    if ! command -v huntbot > /dev/null 2>&1; then
+        printf "\n"
+        warn "To start using huntbot, run:"
+        printf "    ${BOLD}source ~/.bashrc${RESET}  ${YELLOW}# or restart your terminal${RESET}\n"
+    fi
+
     printf "\n"
     printf "  ${BOLD}Get started:${RESET}\n"
     printf "    huntbot setup              Install dependencies\n"
