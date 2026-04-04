@@ -24,15 +24,16 @@ huntbot setup
 
 The recommended way to use huntbot is through **Claude Code with the huntbot skill loaded**. This gives Claude full knowledge of every huntbot command, tool, and workflow.
 
-### 1. Load the huntbot skill
+### 1. Install the huntbot plugin
 
-```bash
-# Add to your Claude Code skills (one time)
-mkdir -p ~/.claude/skills
-curl -fsSL https://raw.githubusercontent.com/Matador-og/huntbot/master/HUNTBOT.md -o ~/.claude/skills/huntbot.md
+Open Claude Code and run:
+
+```
+/plugin marketplace add Matador-og/huntbot
+/plugin install huntbot@huntbot
 ```
 
-### 2. Open Claude Code and talk
+### 2. Talk to Claude
 
 ```bash
 claude

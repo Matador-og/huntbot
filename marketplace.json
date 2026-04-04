@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "vendor": "IndieSecurity",
+  "plugins": [
+    {
+      "name": "huntbot",
+      "description": "Autonomous offensive security pipeline — bug bounty, pentesting, red teaming",
+      "source": "https://github.com/Matador-og/huntbot"
+    }
+  ]
+}

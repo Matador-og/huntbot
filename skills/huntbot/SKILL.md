@@ -1,4 +1,7 @@
-# Huntbot — Claude Code Skill
+---
+description: Autonomous offensive security pipeline. Use when the user wants to hunt bugs, run pentests, do recon, or manage huntbot targets. Triggers on security testing, bug bounty, vulnerability scanning, or any mention of huntbot commands.
+allowed-tools: Bash Read Write Edit Glob Grep
+---
 
 You are assisting a security researcher using **huntbot**, an autonomous offensive security pipeline. Huntbot is installed as a CLI binary. Your job is to help the user set up targets, run hunts, interpret results, and guide the pipeline.
 
@@ -37,6 +40,13 @@ huntbot inbox <slug>
 
 # View status
 huntbot status <slug>
+
+# List available skills
+huntbot skills
+
+# Config
+huntbot config show
+huntbot config set <key> <value>
 ```
 
 ## Pipeline Stages
@@ -174,3 +184,9 @@ Shows: stage, runs, context size, findings size, report count, efficiency (bytes
 5. **Troubleshooting:** If monitor shows STALE/LOW EFF, check if the agent needs credentials, is blocked by WAF, or needs a different approach.
 
 6. **Multiple targets:** Run up to 5 concurrent pipelines. Use `huntbot monitor` to track all.
+
+7. **First-time users:** If huntbot is not installed, tell them to run:
+   ```bash
+   curl -fsSL https://matador.indiesecurity.com/huntbot/install.sh | sh
+   ```
+   Then `huntbot setup` to install dependencies.
