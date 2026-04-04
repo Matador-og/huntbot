@@ -1,16 +1,14 @@
 # huntbot
 
-Autonomous bug bounty hunting pipeline. Spawns Claude Code agents in iterative depth loops to find real vulnerabilities.
+Autonomous bug bounty hunting pipeline. Spawns AI agents in iterative depth loops to find real vulnerabilities.
 
-huntbot runs the full bug bounty workflow: reconnaissance, app mapping, attack testing, triage, and report writing — all automated through AI agents that build on each other's findings.
+huntbot runs the full bug bounty workflow — reconnaissance, app mapping, attack testing, triage, and report writing — all automated through AI agents that build on each other's findings.
 
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Matador-og/huntbot/master/install.sh | GITHUB_TOKEN=ghp_xxx sh
+curl -fsSL https://matador.indiesecurity.com/huntbot/install.sh | sh
 ```
-
-> Requires a GitHub access token. [Request access](https://github.com/Matador-og) to get one.
 
 **Supported platforms:** macOS (Apple Silicon, Intel), Linux (x64, ARM64), WSL
 
@@ -30,7 +28,7 @@ This installs Neo4j, Playwright browsers, and recon tools (subfinder, httpx, kat
 ### Custom install location
 
 ```bash
-HUNTBOT_INSTALL_DIR=/usr/local/bin curl -fsSL ... | GITHUB_TOKEN=ghp_xxx sh
+curl -fsSL https://matador.indiesecurity.com/huntbot/install.sh | HUNTBOT_INSTALL_DIR=/usr/local/bin sh
 ```
 
 ### Update
@@ -43,7 +41,7 @@ Re-run the install command. It overwrites the existing binary.
 # 1. Create a target workspace
 huntbot init paypal --scope "PayPal bug bounty program"
 
-# 2. Edit the scope file (important — defines what to test)
+# 2. Edit the scope file (defines what to test)
 vim ~/.huntbot/programs/paypal/scope.md
 
 # 3. Run the full pipeline
@@ -93,7 +91,7 @@ Messages are injected at the top of the next agent's instructions, above everyth
 huntbot bundles three security testing tools:
 
 ```bash
-# Browser automation (like Burp, but for agents)
+# Browser automation
 huntbot crawl navigate https://target.com --json
 huntbot crawl describe --json
 huntbot crawl click <ref> --json
@@ -176,7 +174,7 @@ Skills are auto-detected from scope keywords, or set explicitly:
 skills: api-rest, auth-oauth, mobile-android
 ```
 
-## Operational Tips
+## Tips
 
 - **Scope matters.** A detailed `scope.md` = better agent performance.
 - **Stage 1 is crucial.** Rich app context = better attacks in stage 2.
