@@ -3,7 +3,7 @@
 # curl -fsSL https://matador.indiesecurity.com/huntbot/install.sh | sh
 set -e
 
-BASE_URL="https://matador.indiesecurity.com/huntbot"
+RELEASE_URL="https://github.com/Matador-og/huntbot/releases/latest/download"
 INSTALL_DIR="${HUNTBOT_INSTALL_DIR:-$HOME/.local/bin}"
 BINARY_NAME="huntbot"
 
@@ -41,7 +41,7 @@ detect_platform() {
 }
 
 download() {
-    DOWNLOAD_URL="${BASE_URL}/${BINARY}"
+    DOWNLOAD_URL="${RELEASE_URL}/${BINARY}"
 
     info "Downloading huntbot for ${PLATFORM}-${ARCH}..."
 
@@ -60,7 +60,7 @@ download() {
         rm -rf "$TMPDIR"
         error "Download failed (HTTP ${HTTP_CODE}).
   URL: ${DOWNLOAD_URL}
-  Check https://matador.indiesecurity.com for status."
+  Check https://github.com/Matador-og/huntbot/releases for available binaries."
     fi
 
     chmod +x "$TMPFILE"
