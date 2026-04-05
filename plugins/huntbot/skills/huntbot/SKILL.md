@@ -66,7 +66,14 @@ Each stage runs multiple agents. When an agent finds nothing new, the stage adva
 Huntbot bundles three security tools that agents use automatically:
 
 ### huntbot crawl — Browser Automation
+
+**Always start a session first** so the browser persists between commands:
+
 ```bash
+# Start session (browser stays alive)
+huntbot crawl session start <name>
+
+# Interact
 huntbot crawl navigate <url> --json
 huntbot crawl describe --json              # List interactive elements
 huntbot crawl click <ref> --json
@@ -76,6 +83,11 @@ huntbot crawl capture stop --json          # Get captured requests
 huntbot crawl screenshot <path>
 huntbot crawl cookies --json
 huntbot crawl storage --json
+huntbot crawl evaluate "<js>" --json       # Execute JavaScript in browser
+
+# Stop session when done
+huntbot crawl session stop <name>
+huntbot crawl session list                 # List active sessions
 ```
 
 ### huntbot ingestor — Attack Surface Graph
