@@ -15,6 +15,8 @@
 
 ---
 
+> Huntbot is a force multiplier, not a replacement for expertise. With the current state of frontier LLMs, expect huntbot to do ~80% of the work — recon, mapping, initial testing, report drafting. The remaining 20% is on you: You just need to ask the right logical questions 
+ 
 ## Real Results
 
 Vulnerabilities found by huntbot, reported by [@mrecho](https://hackerone.com/mrecho).
@@ -25,7 +27,6 @@ Vulnerabilities found by huntbot, reported by [@mrecho](https://hackerone.com/mr
 | [CVE-2026-1035](https://nvd.nist.gov/vuln/detail/CVE-2026-1035) | Red Hat Keycloak | Refresh token reuse bypass via TOCTOU race condition | Low (CVSS 3.1) |
 | + undisclosed | Private programs on [HackerOne](https://hackerone.com/mrecho) and [Intigriti](https://app.intigriti.com/profile/mr_echo) | IDOR, SSRF, auth bypass, business logic, API key leaks | Various |
 
-First production session: 58 runs, 21+ confirmed findings, 12 submission-ready reports. No manual testing.
 
 ## Why huntbot?
 
@@ -179,15 +180,6 @@ Plus recon tools: subfinder, httpx, katana, gau (installed by `huntbot setup`).
 - [Monitor & signals](docs/monitor.md) — dashboard, health signals, efficiency tracking
 - [Skills](docs/skills.md) — auto-loaded methodology per target type
 
-## Disclaimer
-
-Huntbot is a force multiplier, not a replacement for expertise. With the current state of LLMs, expect huntbot to do ~80% of the work — recon, mapping, initial testing, report drafting. The remaining 20% is on you: validating findings, understanding business logic, chaining bugs, and knowing what's actually exploitable vs. noise.
-
-You need to be a security researcher to use this effectively. Huntbot generates leads and context at scale. You decide what's real.
-
-## Background
-
-Built by a bug bounty hunter who got tired of running the same 15 tools manually. Huntbot started as a Python script that spawned Claude Code agents. Now it's a single binary that bundles browser automation, an attack surface graph, and Android testing — with 21+ real vulnerabilities found in its first production session.
 
 ## Author
 
