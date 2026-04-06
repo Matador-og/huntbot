@@ -19,13 +19,13 @@
  
 ## Real Results
 
-Vulnerabilities found by huntbot, reported by [@mrecho](https://hackerone.com/mrecho).
+Vulnerabilities found by using huntbot, reported by [@mrecho](https://hackerone.com/mrecho).
 
 | CVE | Target | Vulnerability | Severity |
 |-----|--------|--------------|----------|
 | [CVE-2026-33728](https://nvd.nist.gov/vuln/detail/CVE-2026-33728) | Datadog `dd-trace-java` | Unsafe deserialization in RMI instrumentation — remote code execution | **Critical** (CVSS 9.3) |
 | [CVE-2026-1035](https://nvd.nist.gov/vuln/detail/CVE-2026-1035) | Red Hat Keycloak | Refresh token reuse bypass via TOCTOU race condition | Low (CVSS 3.1) |
-| + undisclosed | Private programs on [HackerOne](https://hackerone.com/mrecho) and [Intigriti](https://app.intigriti.com/profile/mr_echo) | IDOR, SSRF, auth bypass, business logic, API key leaks | Various |
+
 
 
 ## Why huntbot?
