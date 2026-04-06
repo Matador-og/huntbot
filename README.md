@@ -19,7 +19,7 @@
  
 ## Real Results
 
-Vulnerabilities found by using huntbot, reported by [@mrecho](https://hackerone.com/mrecho).
+Vulnerabilities found by using huntbot, reported by [@mrecho]().
 
 | CVE | Target | Vulnerability | Severity |
 |-----|--------|--------------|----------|
