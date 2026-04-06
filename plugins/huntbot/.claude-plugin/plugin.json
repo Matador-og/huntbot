@@ -1,0 +1,13 @@
+{
+  "name": "huntbot",
+  "description": "Autonomous offensive security pipeline — bug bounty, pentesting, red teaming",
+  "version": "0.1.0",
+  "author": {
+    "name": "IndieSecurity",
+    "url": "https://indiesecurity.com"
+  },
+  "homepage": "https://matador.indiesecurity.com",
+  "repository": "https://github.com/Matador-og/huntbot",
+  "license": "Proprietary",
+  "keywords": ["bug-bounty", "offensive-security", "pentesting", "red-team", "security-automation"]
+}

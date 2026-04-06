@@ -1,0 +1,13 @@
+{
+  "name": "huntbot-marketplace",
+  "owner": {
+    "name": "Matador-og"
+  },
+  "plugins": [
+    {
+      "name": "huntbot",
+      "description": "Autonomous offensive security pipeline — bug bounty, pentesting, red teaming",
+      "source": "./plugins/huntbot"
+    }
+  ]
+}
