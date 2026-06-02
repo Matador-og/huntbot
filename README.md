@@ -15,19 +15,6 @@
 
 ---
 
-> Huntbot is a force multiplier, not a replacement for expertise. It automates the repeatable 80% - recon, mapping, initial testing, evidence capture, and report drafting - so the researcher can focus on the 20% that matters most: asking the right logical questions, proving impact, and rejecting false positives.
- 
-## Real Results
-
-Vulnerabilities found with Huntbot workflows and disclosed through indieSecurity research.
-
-| CVE | Target | Vulnerability | Severity |
-|-----|--------|--------------|----------|
-| [CVE-2026-33728](https://nvd.nist.gov/vuln/detail/CVE-2026-33728) | Datadog `dd-trace-java` | Unsafe deserialization in RMI instrumentation — remote code execution | **Critical** (CVSS 9.3) |
-| [CVE-2026-1035](https://nvd.nist.gov/vuln/detail/CVE-2026-1035) | Red Hat Keycloak | Refresh token reuse bypass via TOCTOU race condition | Low (CVSS 3.1) |
-
-Historical markers in report artifacts are treated as report-time evidence provenance. They are not a substitute for fresh live retesting.
-
 ## Why huntbot?
 
 Most security tools find things. Huntbot **understands** things.
@@ -191,7 +178,7 @@ Plus recon tools: subfinder, httpx, katana, gau (installed by `huntbot setup`).
 
 ## Publisher
 
-Huntbot is published by [indieSecurity](https://indiesecurity.com).
+Huntbot is published by [indieSecurity SARL](https://indiesecurity.com).
 
 ## License
 
