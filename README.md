@@ -9,24 +9,24 @@
 </p>
 
 <p align="center">
-  Offensive security harness for bug bounty, pentesting, and red teaming.<br>
+  Multi-model offensive security harness for bug bounty, pentesting, red teaming, and CVE-aware research.<br>
   Runs recon, maps the app, tests for vulns, validates findings, writes reports.
 </p>
 
 ---
 
-> Huntbot is a force multiplier, not a replacement for expertise. With the current state of frontier LLMs, expect huntbot to do ~80% of the work — recon, mapping, initial testing, report drafting. The remaining 20% is on you: You just need to ask the right logical questions 
+> Huntbot is a force multiplier, not a replacement for expertise. It automates the repeatable 80% - recon, mapping, initial testing, evidence capture, and report drafting - so the researcher can focus on the 20% that matters most: asking the right logical questions, proving impact, and rejecting false positives.
  
 ## Real Results
 
-Vulnerabilities found by using huntbot, reported by [@mrecho]().
+Vulnerabilities found with Huntbot workflows and reported by [@mrecho](https://github.com/amine123ait).
 
 | CVE | Target | Vulnerability | Severity |
 |-----|--------|--------------|----------|
 | [CVE-2026-33728](https://nvd.nist.gov/vuln/detail/CVE-2026-33728) | Datadog `dd-trace-java` | Unsafe deserialization in RMI instrumentation — remote code execution | **Critical** (CVSS 9.3) |
 | [CVE-2026-1035](https://nvd.nist.gov/vuln/detail/CVE-2026-1035) | Red Hat Keycloak | Refresh token reuse bypass via TOCTOU race condition | Low (CVSS 3.1) |
 
-
+Historical markers such as `epg-2025-mrecho` are treated as report-time evidence provenance. They are not a substitute for fresh live retesting.
 
 ## Why huntbot?
 
@@ -35,6 +35,8 @@ Most security tools find things. Huntbot **understands** things.
 - **Accumulates context** — Run 5 knows everything Runs 1-4 discovered. 211KB+ of knowledge per target.
 - **Knows when to stop** — Efficiency tracking (bytes/sec) detects when a stage is exhausted vs productive.
 - **Tests like a human** — Registers accounts, fills forms, clicks through SPAs with a real browser.
+- **Runs multiple model providers** — Claude Code by default; Codex is opt-in with `--codex`.
+- **Loads methodology by stage** — Recon stays focused, mapping gets app/API guidance, and attack stages get deeper validation workflows.
 - **Validates before reporting** — 4-gate triage kills false positives so you don't waste program time.
 - **Writes the report** — Submission-ready markdown with title, severity, steps to reproduce, impact.
 - **You can steer it** — `huntbot chat` redirects agents mid-run. "Focus on the payment API."
@@ -48,7 +50,7 @@ huntbot setup
 
 > [View the install script source](install.sh) before running.
 
-**Requires:** [Claude Code](https://claude.ai/code) with Claude Max subscription. Huntbot uses Claude as its reasoning engine — each run consumes ~50K-150K tokens.
+**Requires at least one model provider:** [Claude Code](https://claude.ai/code) for the default path, or Codex CLI for `--codex` runs. Each run consumes model tokens.
 
 <details>
 <summary>Alternative install methods</summary>
@@ -93,6 +95,10 @@ vim ~/.huntbot/programs/paypal/scope.md
 # Hunt
 huntbot auto paypal --max-runs 5 --timeout 7200 -v
 
+# Hunt with Codex instead of Claude
+huntbot run paypal --stage 0 --codex
+huntbot run paypal --stage 2 --codex --model <model>
+
 # Monitor
 huntbot monitor
 
@@ -107,15 +113,15 @@ cat ~/.huntbot/programs/paypal/findings.md
 
 ```
 S0 Recon          Runs subfinder, httpx, katana, gau. Crawls JS bundles.
-                  Maps the full attack surface. 18-44 b/s efficiency.
+                  Maps the full attack surface with recon-focused skills.
 
 S1 App Mapping    Registers accounts, logs in, clicks through every feature
                   with a real browser. Captures all HTTP traffic. Feeds
                   everything into the attack surface graph.
 
 S2 Attack Testing Queries the graph for IDOR candidates, auth gaps, hidden
-                  endpoints. Tests each one. Every finding passes 4-gate
-                  validation before being written.
+                  endpoints. Loads attack skills only at this point. Every
+                  finding passes validation before being written.
 
 S3 Triage         Re-validates every finding. Reproduces 3/3 times. Kills
                   false positives. Writes submission-ready reports.
@@ -169,6 +175,8 @@ Plus recon tools: subfinder, httpx, katana, gau (installed by `huntbot setup`).
 |------|---------|-------------|
 | `--max-runs` | 3 | 5+ for complex apps |
 | `--timeout` | 1800 | 7200 (2 hours) |
+| `--codex` | off | Use Codex instead of Claude for a run or pipeline |
+| `--model` | provider default | Override the selected provider model |
 | `-v` | off | Always on |
 | `--max-stage` | 4 | 1 for recon-only |
 
