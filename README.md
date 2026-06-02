@@ -19,14 +19,14 @@
  
 ## Real Results
 
-Vulnerabilities found with Huntbot workflows and reported by [@mrecho](https://github.com/amine123ait).
+Vulnerabilities found with Huntbot workflows and disclosed through indieSecurity research.
 
 | CVE | Target | Vulnerability | Severity |
 |-----|--------|--------------|----------|
 | [CVE-2026-33728](https://nvd.nist.gov/vuln/detail/CVE-2026-33728) | Datadog `dd-trace-java` | Unsafe deserialization in RMI instrumentation — remote code execution | **Critical** (CVSS 9.3) |
 | [CVE-2026-1035](https://nvd.nist.gov/vuln/detail/CVE-2026-1035) | Red Hat Keycloak | Refresh token reuse bypass via TOCTOU race condition | Low (CVSS 3.1) |
 
-Historical markers such as `epg-2025-mrecho` are treated as report-time evidence provenance. They are not a substitute for fresh live retesting.
+Historical markers in report artifacts are treated as report-time evidence provenance. They are not a substitute for fresh live retesting.
 
 ## Why huntbot?
 
@@ -189,11 +189,9 @@ Plus recon tools: subfinder, httpx, katana, gau (installed by `huntbot setup`).
 - [Skills](docs/skills.md) — auto-loaded methodology per target type
 
 
-## Author
+## Publisher
 
-**Mohamed Amine Ait Ouchebou** ([@mrecho](https://github.com/amine123ait))
-
-[IndieSecurity](https://indiesecurity.com) · [GitHub](https://github.com/Matador-og) · [LinkedIn](https://linkedin.com/company/indiesecurity)
+Huntbot is published by [indieSecurity](https://indiesecurity.com).
 
 ## License
 
