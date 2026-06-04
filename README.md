@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  Multi-model offensive security harness for bug bounty, pentesting, red teaming, and CVE-aware research.<br>
+  Multi-model offensive security harness for bug bounty, pentesting, red teaming, and LLM Security research.<br>
   Runs recon, maps the app, tests for vulns, validates findings, writes reports.
 </p>
 
