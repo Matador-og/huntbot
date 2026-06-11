@@ -22,11 +22,12 @@ Most security tools find things. Huntbot **understands** things.
 - **Accumulates context** — Run 5 knows everything Runs 1-4 discovered. 211KB+ of knowledge per target.
 - **Knows when to stop** — Efficiency tracking (bytes/sec) detects when a stage is exhausted vs productive.
 - **Tests like a human** — Registers accounts, fills forms, clicks through SPAs with a real browser.
+- **Shares live browser sessions** — `huntbot crawl share -s <name>` opens a tokenized CDP screencast page for human intervention, scrolling, clicking, and typing.
 - **Runs multiple model providers** — Claude Code by default; Codex is opt-in with `--codex`.
 - **Loads methodology by stage** — Recon stays focused, mapping gets app/API guidance, and attack stages get deeper validation workflows.
 - **Validates before reporting** — 4-gate triage kills false positives so you don't waste program time.
 - **Writes the report** — Submission-ready markdown with title, severity, steps to reproduce, impact.
-- **You can steer it** — `huntbot chat` redirects agents mid-run. "Focus on the payment API."
+- **You can steer it** — `huntbot chat` queues guidance; `huntbot chat --force` interrupts the active run and continues with new direction.
 
 ## Install
 
@@ -91,6 +92,13 @@ huntbot monitor
 
 # Steer mid-run
 huntbot chat paypal "focus on IDOR in /api/users/{id}"
+huntbot chat --force paypal "pause and switch to auth bypass testing"
+
+# Share a live browser session for manual intervention
+huntbot crawl session start paypal
+huntbot crawl navigate https://www.paypal.com/ --session paypal
+huntbot crawl share -s paypal --host 0.0.0.0 --port 7777
+huntbot crawl share -s paypal --close
 
 # Check results
 cat ~/.huntbot/programs/paypal/findings.md
@@ -139,7 +147,7 @@ Auto-detects diminishing returns and stops wasting compute.
 
 | Tool | What it does |
 |------|-------------|
-| `huntbot crawl` | Playwright browser — navigate, click, fill forms, capture traffic, execute JS |
+| `huntbot crawl` | Playwright browser — persistent sessions, CDP screencast sharing, navigation, form actions, capture, JS evaluation |
 | `huntbot ingestor` | Neo4j attack surface graph — IDOR detection, auth-gap analysis, endpoint classification |
 | `huntbot matador` | Android testing — ADB, Frida SSL bypass, mitmproxy capture |
 
@@ -153,7 +161,8 @@ Plus recon tools: subfinder, httpx, katana, gau (installed by `huntbot setup`).
 | `huntbot auto <slug>` | Run full pipeline (S0-S4) |
 | `huntbot run <slug> --stage N` | Run one stage |
 | `huntbot monitor [slug]` | Health dashboard |
-| `huntbot chat <slug> "msg"` | Steer agents mid-run |
+| `huntbot chat <slug> "msg"` | Queue guidance for the next agent run |
+| `huntbot chat --force <slug> "msg"` | Interrupt the active run and continue with queued guidance |
 | `huntbot status <slug>` | Target info |
 | `huntbot update` | Self-update |
 | `huntbot setup` | Install dependencies |

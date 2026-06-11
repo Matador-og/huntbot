@@ -9,6 +9,8 @@ Playwright-based headless browser. Always start a session first.
 huntbot crawl session start <name>
 huntbot crawl session stop <name>
 huntbot crawl session list
+huntbot crawl share -s <name> --host 0.0.0.0 --port 7777
+huntbot crawl share -s <name> --close
 
 # Navigation
 huntbot crawl navigate <url> --json
@@ -44,13 +46,15 @@ huntbot crawl proxy --stop
 
 ```bash
 huntbot crawl session start myapp
-huntbot crawl navigate https://app.target.com --json
-huntbot crawl capture start
-huntbot crawl describe --json
-huntbot crawl click e3 --json
-huntbot crawl type e5 "test@test.com" --json
-huntbot crawl capture stop --json > ./capture.json
+huntbot crawl navigate https://app.target.com --session myapp --json
+huntbot crawl share -s myapp --host 0.0.0.0 --port 7777   # Tokenized CDP screencast for manual intervention
+huntbot crawl capture start --session myapp
+huntbot crawl describe --session myapp --json
+huntbot crawl click e3 --session myapp --json
+huntbot crawl type e5 "test@test.com" --session myapp --json
+huntbot crawl capture stop --session myapp --json > ./capture.json
 cat ./capture.json | huntbot ingestor ingest --target target.com --platform web
+huntbot crawl share -s myapp --close
 huntbot crawl session stop myapp
 ```
 
